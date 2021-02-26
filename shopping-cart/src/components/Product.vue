@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters,mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -25,15 +25,15 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      products: (state) => state.products.items,
+    ...mapState("products", {
+      products: (state) => state.items,
       //  fristProduct:state=>state.products[0],
       //  specificProduct(state){
       //    return state.products[this.productIndex]
       //  }
     }),
-    ...mapGetters({
-      productIsInStock:'productIsInStock',
+    ...mapGetters("products", {
+      productIsInStock: "productIsInStock",
     }),
   }, // here get data from prop , API
   //   old computed
@@ -47,8 +47,8 @@ export default {
   // },
   methods: {
     ...mapActions({
-      fetchProducts:'fetchProducts',
-      addToCart:'addToCart',
+      fetchProducts: "products/fetchProducts",
+      addToCart: "cart/addToCart",
     }),
     addProductToCart(product) {
       // this.$store.dispatch("addToCart", product);
@@ -58,7 +58,7 @@ export default {
   created() {
     this.loading = true;
     // this.$store.dispatch("fetchProducts").then(() => (this.loading = false));
-    this.fetchProducts().then(()=>this.loading=false);
+    this.fetchProducts().then(() => (this.loading = false));
   },
 };
 </script>
