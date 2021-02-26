@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Reusable Components with Props</title>
+     <style>
+          html,
+          body {
+               margin: 0;
+               padding: 0;
+          }
+
+          #app {
+               background: url(https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1347&q=80);
+               height: 100vh;
+               padding: 10%;
+               background-size: cover;
+          }
+
+          .title {
+               font-size: large;
+               color: black;
+          }
+
+          .title.big {
+               font-size: 2.5rem;
+               text-align: center;
+               color: white;
+          }
+
+          .subtitle {
+               font-weight: 500;
+               text-align: center;
+               ;
+          }
+
+          .content {
+               margin: 20px 0;
+          }
+
+          .plans {
+               margin: 20px 0;
+               height: 60vh;
+               overflow: auto;
+               padding: 20px;
+          }
+
+          .plan {
+               background: whitesmoke;
+               padding: 20px 10px;
+               margin: 15px 0;
+               border-radius: 5px;
+               transition: box-shadow 0.3s;
+          }
+
+          .plan:hover {
+               box-shadow: 1px 10px 30px violet, 1px 10px 50px violet, 1px 10px 60px violet;
+               cursor: pointer;
+          }
+
+          .plan.active-plan {
+               background-color: aqua;
+          }
+
+          .plan .title {
+               text-align: center;
+               font-weight: 700;
+               letter-spacing: 1px;
+          }
+     </style>
+</head>
+
+<body>
+     <div id="app" class="container mx-auto py-6">
+          <!-- <h1>Vue.js Components Fundamentals</h1>
+          <click-counter></click-counter>
+          <click-counter></click-counter>
+          <click-counter></click-counter>
+          <click-counter></click-counter>
+          <click-counter></click-counter> -->
+          <div class="content">
+               <h1 class="title big">Coffee Plans</h1>
+               <!-- <plan-picker></plan-picker>  -->
+
+               <h2 class="subtitle">
+                    We travel the world to source the very best single origin coffee for you
+               </h2>
+
+               <!-- <div class="plans">
+                    <plan v-for="plan in plans" :name="plan" :key="plan"></plan>
+                    <plan name="The Single"></plan>
+                    <plan name="The Curious"></plan>
+                    <plan name="The Addict"></plan>
+               </div> -->
+               <plan-picker></plan-picker>
+          </div>
+     </div>
+     <script type="text/x-template" id="plan-picker-template">
+          <div class="plans">
+               <plan v-for="plan in plans" :name="plan" :key="plan" @selectEventBinding="selectPlan" :selectedPlan="selectedPlan"></plan>
+          </div>
+     </script>
+     <script type="text/x-template" id="click-counter-template">
+          <div>
+               <h6>this count is :</h6>
+               <button @click="count++">{{count}}</button>
+          </div>
+     </script>
+     <script type="text/x-template" id="plan-template">
+          <div  @click="select" class="plan" :class="{'active-plan':isSelected}">
+               <div class="description">
+                    <span class="title">{{name}}</span>
+               </div>
+          </div>
+     </script>
+
+     <script src="https://unpkg.com/vue"></script>
+     <script src="./app.js"></script>
+</body>
+
+</html>
