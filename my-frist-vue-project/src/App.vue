@@ -1,11 +1,16 @@
+
+ <!-- HTML layout here -->
 <template>
+
   <div id="nav">
+    <p>Đây là router</p>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
-  <router-view />
+  <!-- router-view tuong tu router-outlet Angular  -->
+  <router-view />  
 </template>
-
+ <!-- style css here -->
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
